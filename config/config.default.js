@@ -20,4 +20,6 @@ exports.jaeger = {
     // username: '',
     // password: '',
   },
+  sequelize: true,
+  redis: true,
 };

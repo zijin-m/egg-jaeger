@@ -1,5 +1,6 @@
 'use strict';
 const hooks = require('./lib/hooks');
+const { enableAsyncHook } = require('./lib/store');
 
 class AppBootHook {
   constructor(app) {
@@ -26,6 +27,10 @@ class AppBootHook {
 
   async didReady() {
     // 应用已经启动完毕
+    const { sequelize, redis } = this.app.config.jaeger;
+    if (sequelize || redis) {
+      enableAsyncHook();
+    }
     hooks(this.app);
   }
 

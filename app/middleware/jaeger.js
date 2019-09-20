@@ -17,7 +17,9 @@ module.exports = (options, app) => async (ctx, next) => {
   }
   const span = app.startSpan(`HTTP ${ctx.method}`, spanOptions);
   ctx.rootSpan = span;
-  setSpanContext(span);
+  if (ctx.helper.enableAsyncHook) {
+    setSpanContext(span);
+  }
   ctx.tracer.traceId = span.context().traceIdStr;
   try {
     await next();

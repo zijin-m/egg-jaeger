@@ -48,12 +48,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/eggjs/egg-jaeger.git"
+    "url": "git+https://github.com/zijin-m/egg-jaeger.git"
   },
   "bugs": {
     "url": "https://github.com/eggjs/egg/issues"
   },
-  "homepage": "https://github.com/eggjs/egg-jaeger#readme",
+  "homepage": "https://github.com/zijin-m/egg-jaeger#readme",
   "author": "zijin",
   "license": "MIT"
 }
