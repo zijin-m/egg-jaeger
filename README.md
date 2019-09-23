@@ -10,13 +10,28 @@
 
 ![](https://raw.githubusercontent.com/zijin-m/egg-jaeger/master/assets/demo.png)
 
-## Install
+### 重要说明
+
+对于 `Sequelize` 和 `Redis` 的跟踪依赖了 `Async Hooks` 特性，该特性在目前版本(`12.10.0`)的 Node 中依然是实验性的，请慎重在生产环境中使用。
+
+### 统一 `TraceId` 返回
+
+默认会在 `ctx.body` 中返回 `traceId` 字段。
+
+```js
+{
+  ok: true,
+  traceId: "a3c92d1c813533d5"
+}
+```
+
+## 安装
 
 ```bash
 $ npm i @zijin-m/egg-jaeger --save
 ```
 
-## Usage
+## 使用
 
 ```js
 // {app_root}/config/plugin.js
@@ -26,7 +41,7 @@ exports.jaeger = {
 };
 ```
 
-## Configuration
+## 配置
 
 ```js
 // {app_root}/config/config.default.js
@@ -51,9 +66,35 @@ exports.jaeger = {
 
 see [config/config.default.js](config/config.default.js) for more detail.
 
-## Example
+## 示例
 
-<!-- example here -->
+### HTTP 链路
+
+1. 通过 `egg` 自带的 `HttpClient` 进行 `http` 调用，注意要使用 `ctx.curl` 而不要用 `app.curl` ，因为 `ctx.curl` 才能正确的传递 `ctx上下文信息` 用来链路追踪。
+
+```js
+ctx.curl('http://www.google.com');
+```
+
+2. 通过 npm 包 [request-promise-jaeger](https://www.npmjs.com/package/request-promise-jaeger) 进行 `http` 调用，这种方式需要手动传入 `ctx.tracer` 和 `ctx.rootSpan` 作为请求参数。
+
+```js
+const rp = require('request-promise-jaeger');
+
+rp('http://www.google.com', {
+  tracer: ctx.tracer,
+  rootSpan: ctx.rootSpan
+  // ... other options
+});
+```
+
+### Sequelize 跟踪
+
+通过配置 `sequelize: true` 开启，开启后会为每个 `SQL` 操作创建 `Span`
+
+### Redis 跟踪
+
+通过配置 `redis: true` 开启，开启后会为每个 `Command` 操作创建 `Span`
 
 ## Questions & Suggestions
 

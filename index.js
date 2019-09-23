@@ -5,15 +5,19 @@ module.exports = {
   httpRpc: () => {
     return function(target, propertyKey, descriptor) {
       const func = descriptor.value;
-      if (!this.app || !this.app.tracer) {
-        return func;
-      }
+
       descriptor.value = async function(...args) {
-        let [ url, options = {} ] = args;
-        if (typeof url === 'object') {
-          options = url;
+        if (!this.ctx || !this.ctx.app || !this.ctx.app.tracer || !this.ctx.rootSpan) {
+          return func;
+        }
+        const tracer = this.ctx.app.tracer;
+        const rootSpan = this.ctx.rootSpan;
+        let options;
+        if (typeof args[0] === 'string') {
+          options = args[1] || {};
+          options.url = args[0];
         } else {
-          options.url = url;
+          options = args[0];
         }
         const method = options.method || 'GET';
         options.headers = options.headers || {};
@@ -23,10 +27,10 @@ module.exports = {
             [Tags.HTTP_URL]: options.url,
             'http.req_body': options.data || {},
           },
-          childOf: this.rootSpan,
+          childOf: rootSpan,
         };
-        const span = this.app.startSpan(`HTTP ${method}`, spanOptions);
-        this.app.tracer.inject(span, FORMAT_HTTP_HEADERS, options.headers);
+        const span = tracer.startSpan(`HTTP ${method}`, spanOptions);
+        tracer.inject(span, FORMAT_HTTP_HEADERS, options.headers);
         try {
           const res = await func.apply(this, args);
           span.finish();
@@ -39,6 +43,7 @@ module.exports = {
             stack: err.stack,
           });
           span.finish();
+          throw err;
         }
       };
     };
