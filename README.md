@@ -37,7 +37,7 @@ $ npm i @zijin-m/egg-jaeger --save
 // {app_root}/config/plugin.js
 exports.jaeger = {
   enable: true,
-  package: 'egg-jaeger'
+  package: '@zijin-m/egg-jaeger'
 };
 ```
 
