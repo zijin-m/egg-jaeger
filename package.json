@@ -11,6 +11,7 @@
     "egg-plugin"
   ],
   "dependencies": {
+    "@types/jaeger-client": "^3.15.1",
     "cls-hooked": "^4.2.2",
     "jaeger-client": "^3.16.0",
     "opentracing": "^0.14.4"

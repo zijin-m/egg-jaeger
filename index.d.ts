@@ -1,5 +1,13 @@
-declare module 'egg-jaeger' {
-  export function httpRpc(
-    name?: string
-  ): (target: any, propertyKey: string, descriptor: PropertyDescriptor) => void;
+import { TracingConfig } from 'jaeger-client';
+
+interface EggJaegerTracingConfig extends TracingConfig {
+  sequelize?: boolean;
+  redis?: boolean;
+}
+
+declare module 'egg' {
+  // 扩展你的配置
+  interface EggAppConfig {
+    jaeger: EggJaegerTracingConfig;
+  }
 }
