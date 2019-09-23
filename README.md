@@ -1,5 +1,3 @@
-![](https://raw.githubusercontent.com/zijin-m/egg-jaeger/master/assets/demo.png)
-
 # egg-jaeger
 
 `Jaeger` 链路追踪插件。支持功能：
@@ -7,6 +5,10 @@
 1. `Http` 调用链路。
 2. `Sequelize` 的 `SQL`语句跟踪。
 3. `Redis` 的 `Command`命令跟踪。
+
+### Demo
+
+![](https://raw.githubusercontent.com/zijin-m/egg-jaeger/master/assets/demo.png)
 
 ## Install
 
