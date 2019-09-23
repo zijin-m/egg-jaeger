@@ -8,7 +8,7 @@
 
 ### 效果图
 
-![](https://raw.githubusercontent.com/zijin-m/egg-jaeger/master/assets/demo.png)
+![](https://raw.githubusercontent.com/zijin-m/egg-jaeger/master/assets/jaeger.png)
 
 ### 重要说明
 
