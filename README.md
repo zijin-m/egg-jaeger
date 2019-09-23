@@ -6,7 +6,7 @@
 2. `Sequelize` 的 `SQL`语句跟踪。
 3. `Redis` 的 `Command`命令跟踪。
 
-### Demo
+### 效果图
 
 ![](https://raw.githubusercontent.com/zijin-m/egg-jaeger/master/assets/demo.png)
 
