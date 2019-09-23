@@ -1,6 +1,7 @@
 import { TracingConfig } from 'jaeger-client';
 
 interface EggJaegerTracingConfig extends TracingConfig {
+  middlewareIndex?: number;
   sequelize?: boolean;
   redis?: boolean;
 }

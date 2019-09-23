@@ -60,9 +60,14 @@ exports.jaeger = {
     // password: '',
   },
   sequelize: false, // 默认不开启sequelize记录
-  redis: false //默认不开启redis记录
+  redis: false, //默认不开启redis记录
+  middlewareIndex: 1 // 默认插入的中间件位置
 };
 ```
+
+### 备注
+
+`middlewareIndex` 是将 `jaeger` 中间件插入的位置，默认放在错误捕捉中间件（类似`error_handler_middleware`）后面，其他中间件前面，所以默认为 `1`，这样的目的是在错误被被捕获前由`jaeger`中间件能捕获到错误，设置错误 `Tag` 后再抛出错误，如果你没有错误捕捉中间件，应该设置为 `0`，即第一个中间件。
 
 see [config/config.default.js](config/config.default.js) for more detail.
 

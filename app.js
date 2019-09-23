@@ -12,7 +12,8 @@ class AppBootHook {
     // 这是应用层修改配置的最后时机
     // 注意：此函数只支持同步调用
     // 将 jaeger 中间件放到最前
-    this.app.config.middleware.splice(1, 0, 'jaeger');
+    const { middlewareIndex } = this.app.config.jaeger;
+    this.app.config.middleware.splice(middlewareIndex, 0, 'jaeger');
   }
 
   async didLoad() {

@@ -21,4 +21,5 @@ exports.jaeger = {
   },
   sequelize: false,
   redis: false,
+  middlewareIndex: 1,
 };
