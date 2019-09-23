@@ -7,7 +7,7 @@ module.exports = (options, app) => async (ctx, next) => {
   const spanOptions = {
     tags: {
       [Tags.HTTP_METHOD]: ctx.method,
-      [Tags.HTTP_URL]: ctx.url,
+      [Tags.HTTP_URL]: ctx.href,
       'http.req_body': ctx.request.body,
     },
   };
@@ -15,7 +15,7 @@ module.exports = (options, app) => async (ctx, next) => {
   if (parentSpan) {
     spanOptions.childOf = parentSpan;
   }
-  const span = app.startSpan(`HTTP ${ctx.method}`, spanOptions);
+  const span = app.startSpan(`${ctx.url}`, spanOptions);
   ctx.rootSpan = span;
   if (ctx.helper.enableAsyncHook) {
     setSpanContext(span);
