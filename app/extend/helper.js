@@ -1,6 +1,7 @@
 'use strict';
 module.exports = {
   get enableAsyncHook() {
-    return this.app.config.sequelize || this.app.config.redis;
+    const { sequelize, redis } = this.app.config.jaeger;
+    return sequelize || redis;
   },
 };

@@ -1,5 +1,5 @@
 {
-  "name": "egg-jaeger",
+  "name": "@zijin-m/egg-jaeger",
   "version": "1.0.0",
   "description": "jaeger client  for egg",
   "eggPlugin": {

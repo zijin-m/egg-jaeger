@@ -6,8 +6,7 @@
  * @property {String} SOME_KEY - some description
  */
 exports.jaeger = {
-  serviceName: 'my-awesome-service',
-  disable: false,
+  serviceName: 'your-service-name',
   sampler: {
     type: 'const',
     param: 1,
@@ -20,6 +19,6 @@ exports.jaeger = {
     // username: '',
     // password: '',
   },
-  sequelize: true,
-  redis: true,
+  sequelize: false,
+  redis: false,
 };
