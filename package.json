@@ -1,6 +1,6 @@
 {
   "name": "@zijin-m/egg-jaeger",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "jaeger client  for egg",
   "eggPlugin": {
     "name": "jaeger"
@@ -42,7 +42,10 @@
     "app.js",
     "agent.js",
     "config",
-    "app"
+    "app",
+    "lib",
+    "index.js",
+    "index.d.ts"
   ],
   "ci": {
     "version": "8, 10"
