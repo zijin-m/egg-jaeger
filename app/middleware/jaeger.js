@@ -29,7 +29,7 @@ module.exports = (options, app) => async (ctx, next) => {
       message: ctx.body,
     });
     span.finish();
-    if (ctx.body && typeof ctx.body === 'object') {
+    if (ctx.body && Object.prototype.toString.call(ctx.body) === '[object Object]') {
       ctx.body.traceId = ctx.tracer.traceId;
     }
   } catch (error) {
