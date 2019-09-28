@@ -1,6 +1,6 @@
 {
   "name": "@zijin-m/egg-jaeger",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "jaeger client  for egg",
   "eggPlugin": {
     "name": "jaeger"
@@ -8,7 +8,9 @@
   "keywords": [
     "egg",
     "eggPlugin",
-    "egg-plugin"
+    "egg-plugin",
+    "jaeger",
+    "egg-jaeger"
   ],
   "dependencies": {
     "@types/jaeger-client": "^3.15.1",
