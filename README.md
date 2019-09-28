@@ -14,14 +14,20 @@
 
 对于 `Sequelize` 和 `Redis` 的跟踪依赖了 `Async Hooks` 特性，该特性在目前版本(`12.10.0`)的 Node 中依然是实验性的，请慎重在生产环境中使用。
 
+### HTTP上下游打通
+
+通过 `FORMAT_HTTP_HEADERS` 进行上下游链路打通，上游在 `HTTP HEADER` 中携带 `uber-trace-id` 时可以注入当前 `tracer` 。
+
+进行下游 `HTTP` 调用时可以使用 `ctx.curl` , 会自动注入当前 `tracer` 到 `HEADER` ，详见下文。
+
 ### 统一 `TraceId` 返回
 
 默认会在 `ctx.body` 中返回 `traceId` 字段。
 
 ```js
 {
-  ok: true,
-  traceId: "a3c92d1c813533d5"
+  ok: true, // 原本的返回结果
+  traceId: "a3c92d1c813533d5" // 附加 traceId
 }
 ```
 
