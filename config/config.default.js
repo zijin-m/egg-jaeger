@@ -14,7 +14,7 @@ exports.jaeger = {
   reporter: {
     // Provide the traces endpoint; this forces the client to connect directly to the Collector and send
     // spans over HTTP
-    collectorEndpoint: 'http://jaeger-collector:14268/api/traces',
+    // collectorEndpoint: 'http://jaeger-collector:14268/api/traces',
     // Provide username and password if authentication is enabled in the Collector
     // username: '',
     // password: '',
